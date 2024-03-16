@@ -4,13 +4,15 @@ const mongoose = require('mongoose');
 const vendorRoutes = require('./routes/vendorRoutes');
 const bodyParser = require('body-parser');
 const firmRoutes = require('./routes/firmRoutes');
-const productRoutes = require('./routes/productRoutes')
+const productRoutes = require('./routes/productRoutes');
+const cors = require('cors');
 
 const app = express()
 
 const PORT = process.env.PORT || 4000;
 
 dotEnv.config();
+app.use(cors())
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected successfully!"))
