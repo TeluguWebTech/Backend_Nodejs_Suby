@@ -55,15 +55,26 @@ const vendorLogin = async(req, res) => {
 
 }
 
+// const getAllVendors = async(req, res) => {
+//     try {
+//         const vendors = await Vendor.find().populate('firm');
+//         res.json({ vendors })
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ error: "Internal server error" });
+//     }
+// }
+
 const getAllVendors = async(req, res) => {
     try {
-        const vendors = await Vendor.find().populate('firm');
-        res.json({ vendors })
+        const vendors = await Vendor.find().sort({ createdAt: -1 }).populate('firm');
+        res.json({ vendors });
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "Internal server error" });
     }
 }
+
 
 const getVendorById = async(req, res) => {
     const vendorId = req.params.apple;
